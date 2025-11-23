@@ -46,38 +46,47 @@ const REVIEWS = [
 const Transformations: React.FC = () => {
   return (
     <div className="pt-20">
-      <Section darker className="text-center">
-        <h1 className="text-5xl md:text-7xl font-medium text-white mb-6 tracking-tight">HISTORIE</h1>
-        <p className="text-xl text-gray-400 max-w-2xl mx-auto font-light">
-          Prawdziwe opinie osób, które zaufały procesowi i zmieniły swoje życie na lepsze.
-        </p>
-      </Section>
+      {/* Header with Moody/Emotional Background */}
+      <div className="relative pt-24 pb-20 overflow-hidden">
+         {/* Asymmetrical Glows */}
+         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-brand-accent/5 blur-[100px] rounded-full mix-blend-screen pointer-events-none" />
+         <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white/5 blur-[80px] rounded-full pointer-events-none" />
+         
+         <Section className="relative z-10 text-center !bg-transparent !py-0">
+          <h1 className="text-6xl md:text-8xl text-white mb-8 tracking-tight font-display font-medium">
+            HISTORIE
+          </h1>
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+            Prawdziwe opinie osób, które zaufały procesowi i zmieniły swoje życie na lepsze.
+          </p>
+        </Section>
+      </div>
 
       <Section>
-        {/* Vertical list layout for single-column scrolling */}
-        <div className="max-w-3xl mx-auto flex flex-col gap-16">
-          {REVIEWS.map((review) => (
+        {/* Vertical list layout with elegant typography */}
+        <div className="max-w-4xl mx-auto flex flex-col gap-24 relative">
+          {/* Decorative vertical line */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/10 to-transparent -translate-x-1/2 hidden md:block" />
+
+          {REVIEWS.map((review, index) => (
             <div 
               key={review.id} 
-              className="bg-brand-gray p-10 md:p-16 rounded-[2rem] border border-white/5 hover:border-brand-accent/20 transition-all duration-500 relative group shadow-2xl shadow-black/20"
+              className={`relative group px-6 md:px-10 py-12 transition-all duration-700 rounded-3xl border border-white/5 bg-brand-dark/50 hover:bg-brand-gray/50 hover:border-brand-accent/20 backdrop-blur-sm ${index % 2 === 0 ? 'md:translate-x-4' : 'md:-translate-x-4'}`}
             >
-              <div className="absolute top-10 left-10 opacity-10 group-hover:opacity-20 transition-opacity">
-                <Quote className="w-20 h-20 text-brand-accent" />
+              {/* Quote Icon */}
+              <div className="absolute -top-5 left-8 bg-brand-dark px-2 z-20">
+                <Quote className="w-10 h-10 text-brand-accent fill-brand-accent/10 transform rotate-180" />
               </div>
               
-              <div className="relative z-10">
-                <p className="text-gray-200 text-xl md:text-3xl leading-relaxed mb-10 font-display font-light">
+              <div className="relative z-10 text-center pt-4">
+                <p className="text-gray-200 text-2xl md:text-3xl leading-relaxed mb-10 font-display italic">
                   "{review.content}"
                 </p>
                 
-                <div className="flex items-center gap-5 pt-8 border-t border-white/5">
-                  <div className="w-14 h-14 rounded-full bg-brand-dark border border-white/10 flex items-center justify-center text-brand-accent font-display text-2xl">
-                    {review.name.charAt(0)}
-                  </div>
-                  <div>
-                    <h4 className="text-white font-bold tracking-wide text-lg">{review.name}</h4>
-                    <p className="text-brand-accent text-xs uppercase tracking-widest mt-1">{review.role}</p>
-                  </div>
+                <div className="flex flex-col items-center gap-2">
+                  <div className="w-10 h-1 bg-brand-accent/30 rounded-full mb-2"></div>
+                  <h4 className="text-white font-bold tracking-wide text-lg font-sans">{review.name}</h4>
+                  <p className="text-gray-400 text-xs uppercase tracking-widest">{review.role}</p>
                 </div>
               </div>
             </div>
@@ -85,9 +94,14 @@ const Transformations: React.FC = () => {
         </div>
       </Section>
 
-      <Section darker className="text-center py-20">
-        <h2 className="text-3xl font-medium text-white mb-8">Dołącz do zadowolonych podopiecznych</h2>
-        <Button to="/oferta" className="rounded-full px-12 py-4">Zacznij Współpracę</Button>
+      <Section darker className="text-center py-20 border-t border-white/5 relative overflow-hidden">
+        <div className="absolute inset-0 bg-brand-accent/5 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay"></div>
+        <div className="relative z-10">
+          <h2 className="text-3xl md:text-4xl font-display text-white mb-8">Dołącz do zadowolonych podopiecznych</h2>
+          <Button to="/oferta" className="rounded-full px-12 py-4 shadow-[0_0_20px_rgba(16,185,129,0.2)] hover:shadow-[0_0_30px_rgba(16,185,129,0.4)]">
+            Zacznij Współpracę
+          </Button>
+        </div>
       </Section>
     </div>
   );
